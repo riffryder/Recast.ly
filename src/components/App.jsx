@@ -15,12 +15,27 @@ class App extends React.Component {
     });
   }
 
+  searchVideos(input) {
+    var options = {
+      key: window.YOUTUBE_API_KEY,
+      query: input,
+      max: 5
+    };
+    
+    this.props.searchYouTube(options, (videos) => {
+      this.setState({
+        videos: videos, 
+        currentVideo: videos[0]
+      });
+    });
+  }
+
   render() {
     return (
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <div><h5><em>search</em> view goes here</h5></div>
+            <Search searchVideos={(q) => this.searchVideos(q)}/>
           </div>
         </nav>
         <div className="row">
