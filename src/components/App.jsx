@@ -6,6 +6,13 @@ class App extends React.Component {
       videos: window.exampleVideoData, 
       currentVideo: window.exampleVideoData[0]
     };
+    this.selectVideo = this.selectVideo.bind(this);
+  }
+
+  selectVideo(video) {
+    this.setState({
+      currentVideo: video
+    });
   }
 
   render() {
@@ -21,7 +28,7 @@ class App extends React.Component {
             <VideoPlayer video={this.state.currentVideo}/>
           </div>
           <div className="col-md-5">
-            <VideoList videos={this.state.videos}/>
+            <VideoList selectVideo={this.selectVideo} videos={this.state.videos}/>
           </div>
         </div>
       </div>
